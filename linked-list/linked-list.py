@@ -68,10 +68,68 @@ class LinkedList:
             self.tail = None
 
         return temp
-        
+    
+    def get(self, index):
+        if index < 0 or index >= self.lenght:
+            return None
 
-my_linked_list = LinkedList(1) 
-my_linked_list.append(2)
-my_linked_list.prepend(3)
-my_linked_list.pop_first()
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+        
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+    
+    def insert(self, index, value):
+        new_node = Node(value)
+        if index == 0:
+            new_node.next = self.head
+            self.head = new_node
+        elif index == self.lenght:
+            self.tail.next = new_node
+            self.tail = new_node
+        else:
+            temp = self.head
+            for _ in range(index):
+                temp = temp.next
+
+            new_node.next = temp.next
+            temp.next = new_node
+        self.lenght += 1
+        return True 
+    
+    def remove(self, index):
+        temp = self.head
+        if index == 0:
+            self.head = self.head.next
+            temp.next = None
+        elif index == self.lenght - 1:
+            while temp.next.next is not None:
+                temp = temp.next
+            temp.next = None
+        else:
+            for _ in range(index - 1):
+                temp = temp.next
+            temp.next = temp.next.next
+        self.lenght -= 1
+        
+    def reverse(self):
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+            
+
+            
+
+my_linked_list = LinkedList(1)
+my_linked_list.append(3)
+my_linked_list.append(23)
+my_linked_list.append(7)
+
+my_linked_list.remove(2)
 my_linked_list.print_list()
