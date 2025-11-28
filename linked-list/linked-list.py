@@ -122,14 +122,30 @@ class LinkedList:
         temp = self.head
         self.head = self.tail
         self.tail = temp
-            
+        after = temp.next
+        before = None
 
+        for _ in range(self.lenght):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
+    
+    def middle_node(self):
+        fast = self.head
+        slow = self.head
+        while (fast.next):
+            fast = fast.next.next
+            slow = slow.next
+
+        return slow.value
             
 
 my_linked_list = LinkedList(1)
+my_linked_list.append(2)
 my_linked_list.append(3)
-my_linked_list.append(23)
-my_linked_list.append(7)
+my_linked_list.append(4)
+my_linked_list.append(5)
 
-my_linked_list.remove(2)
-my_linked_list.print_list()
+print(my_linked_list.middle_node())
+
