@@ -20,13 +20,13 @@ class hasLoop:
         print("No loop found.")
         return False
 
-
-
+    
 
 my_linked_list = LinkedList(1)
 
 has_loop_finder = hasLoop(my_linked_list)
 print(has_loop_finder.has_loop())
+print(has_loop_finder.k_node(2))
 my_linked_list.append(2)
 my_linked_list.append(3)
 my_linked_list.append(4)

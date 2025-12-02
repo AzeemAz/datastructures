@@ -139,13 +139,37 @@ class LinkedList:
             slow = slow.next
 
         return slow.value
-            
+    
+    def reverse_at_index(self, start_index, end_index):
+        dummy_node = Node(0)
+        dummy_node.next = self.head
+        previous_node = dummy_node
+
+        for i in range(start_index):
+            print("index value:", i)
+            previous_node = previous_node.next
+            print("inside-loop value:", previous_node.value)
+        current_node = previous_node.next
+        print("out-of-loop value from current node:", current_node.value)
+
+   
+        node_to_move = current_node.next
+        current_node.next = node_to_move.next
+        node_to_move.next = previous_node.next
+        previous_node.next = node_to_move
+
+        print("previos nodes next:", previous_node.value)
+
+        print("first line:", node_to_move.value)
+        print("second line:", current_node.value)
+        print("third line:", node_to_move.value)
+        print("fourth line:", previous_node.value)
+
 
 my_linked_list = LinkedList(1)
+
 my_linked_list.append(2)
 my_linked_list.append(3)
 my_linked_list.append(4)
 my_linked_list.append(5)
-
-print(my_linked_list.middle_node())
-
+my_linked_list.reverse_at_index(2, 5)
