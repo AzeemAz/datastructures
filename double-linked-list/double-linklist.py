@@ -145,10 +145,25 @@ class DoublyLinkedList:
 
         self.length -= 1
         return temp.value
+
+    def reserve(self):
+        temp = None
+        current = self.head
+        print(f'temp before: {temp}')
+
+        temp = current.prev
+        print(f'temp after: {temp}')
+        current.prev = current.next
+        print(f'current.prev: {current.prev.value}')
+        current.next = temp
+        current = current.prev
+
+
+
         
 my_double_linked_list = DoublyLinkedList(1)
 my_double_linked_list.append(2)
 my_double_linked_list.append(3)
-my_double_linked_list.remove(2)
-my_double_linked_list.print_list()
+my_double_linked_list.reserve()
+
 
